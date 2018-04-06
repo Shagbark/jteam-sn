@@ -1,4 +1,5 @@
-import ru.jteam.social.network.validation.EmailConstraintValidator
+package ru.jteam.social.network.validation
+
 import spock.lang.Specification
 
 /**
