@@ -8,7 +8,7 @@ import java.lang.annotation.*;
  * @author protsko on 06.04.18
  */
 @Documented
-@Target(ElementType.TYPE)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = EmailConstraintValidator.class)
 public @interface Email {
