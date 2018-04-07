@@ -1,7 +1,7 @@
 package ru.jteam.social.network.validation;
 
 import org.springframework.beans.BeanWrapper;
-import org.springframework.beans.PropertyAccessorFactory;
+import org.springframework.beans.BeanWrapperImpl;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -23,7 +23,7 @@ public class FieldsMatchConstraintValidator implements ConstraintValidator<Field
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext constraintValidatorContext) {
-        BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(value);
+        BeanWrapper beanWrapper = new BeanWrapperImpl(value);
 
         Object firstFieldValue = beanWrapper.getPropertyValue(first);
         Object secondFieldValue = beanWrapper.getPropertyValue(second);

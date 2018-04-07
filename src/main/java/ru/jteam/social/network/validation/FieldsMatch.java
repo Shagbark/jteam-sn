@@ -16,7 +16,7 @@ import java.lang.annotation.*;
 @Documented
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = EmailConstraintValidator.class)
+@Constraint(validatedBy = FieldsMatchConstraintValidator.class)
 public @interface FieldsMatch {
 
     String message();
