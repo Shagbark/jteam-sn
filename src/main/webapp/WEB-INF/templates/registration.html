@@ -13,32 +13,47 @@
 
             <div class="login_form_container">
 
-                <form class="login_form">
+                <!--/*@thymesVar id="registrationDto" type="ru.jteam.social.network.dto.RegistrationDto"*/-->
+                <form class="login_form" method="post" th:object="${registrationDto}"
+                        th:action="@{/registration}" name="registrationDto">
 
                     <div class="form_header">Sign Up JTeam SN</div>
 
                     <div>
-                        <input class="form_input form-control" placeholder="Login"/>
+                        <input class="form_input form-control" type="text" placeholder="Login" th:field="*{login}"
+                                th:errorclass="input_error"/>
+                        <p class="error-description" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></p>
                     </div>
 
                     <div>
-                        <input class="form_input form-control" placeholder="Name"/>
+                        <input class="form_input form-control" type="text" placeholder="Name" th:field="*{name}"
+                               th:errorclass="input_error"/>
+                        <p class="error-description" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
                     </div>
 
                     <div>
-                        <input class="form_input form-control" placeholder="Email"/>
+                        <input class="form_input form-control" type="text" placeholder="Email" th:field="*{email}"
+                               th:errorclass="input_error"/>
+                        <p class="error-description" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                     </div>
 
                     <div>
-                        <input class="form_input form-control" type="password" placeholder="Password">
+                        <input type="password" placeholder="Password" th:field="*{password}"
+                               th:class="${#fields.hasErrors('global')} ? 'form_input form-control input_error' : 'form_input form-control'"/>
+                        <p class="error-description" th:if="${#fields.hasErrors('global')}"
+                                th:errors="*{global}"></p>
                     </div>
 
                     <div>
-                        <input class="form_input form-control" type="password" placeholder="Confirm password">
+                        <input type="password" placeholder="Confirm password"
+                                th:field="*{passwordConfirmation}"
+                                th:class="${#fields.hasErrors('global')} ? 'form_input form-control input_error' : 'form_input form-control'">
+                        <p class="error-description" th:if="${#fields.hasErrors('global')}"
+                                th:errors="*{global}"></p>
                     </div>
 
                     <div class="button_container">
-                        <button class="btn btn-outline-success">Sign up</button>
+                        <button class="btn btn-outline-success" type="submit">Sign up</button>
                     </div>
 
                 </form>
