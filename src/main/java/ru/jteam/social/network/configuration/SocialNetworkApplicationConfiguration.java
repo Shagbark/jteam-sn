@@ -14,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 @ComponentScan(basePackages = "ru.jteam.social.network")
 @Import({
+        HibernateConfiguration.class,
         ThymeleafConfiguration.class
 })
 public class SocialNetworkApplicationConfiguration extends
