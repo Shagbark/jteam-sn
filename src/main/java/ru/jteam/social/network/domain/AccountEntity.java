@@ -20,8 +20,12 @@ public class AccountEntity implements Serializable {
     @Column(name = "name", unique = true, nullable = false)
     private String login;
 
-    @OneToOne(mappedBy = "account")
+    @OneToOne(cascade = CascadeType.ALL)
+    @MapsId
     private ApplicationUserEntity applicationUser;
+
+    @OneToOne(mappedBy = "account", cascade = CascadeType.PERSIST)
+    private ApplicationUserPasswordEntity userPasswordEntity;
 
     public AccountEntity() {}
 
@@ -33,7 +37,31 @@ public class AccountEntity implements Serializable {
         return accountId;
     }
 
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     public String getLogin() {
         return login;
+    }
+
+    public ApplicationUserEntity getApplicationUser() {
+        return applicationUser;
+    }
+
+    public void setApplicationUser(ApplicationUserEntity applicationUser) {
+        this.applicationUser = applicationUser;
+    }
+
+    public ApplicationUserPasswordEntity getUserPasswordEntity() {
+        return userPasswordEntity;
+    }
+
+    public void setUserPasswordEntity(ApplicationUserPasswordEntity userPasswordEntity) {
+        this.userPasswordEntity = userPasswordEntity;
     }
 }

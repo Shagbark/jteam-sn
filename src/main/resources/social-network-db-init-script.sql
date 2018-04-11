@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS accounts (
 CREATE TABLE IF NOT EXISTS application_user (
   account_id INT PRIMARY KEY,
   first_name VARCHAR(40) NOT NULL,
-  last_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50),
   email VARCHAR(100) NOT NULL UNIQUE,
   FOREIGN KEY (account_id) REFERENCES accounts(account_id)
 );

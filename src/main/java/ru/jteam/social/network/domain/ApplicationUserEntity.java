@@ -11,9 +11,8 @@ import java.io.Serializable;
 public class ApplicationUserEntity implements Serializable {
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "account_id")
-    private AccountEntity account;
+    @Column(name = "account_id")
+    private int accountId;
 
     @Column(name = "first_name", nullable = false, length = 40)
     private String name;
@@ -32,8 +31,8 @@ public class ApplicationUserEntity implements Serializable {
         this.email = email;
     }
 
-    public AccountEntity getAccount() {
-        return account;
+    public int getAccountId() {
+        return accountId;
     }
 
     public String getName() {
