@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import ru.jteam.social.network.domain.AccountEntity;
 import ru.jteam.social.network.domain.ApplicationUserEntity;
 import ru.jteam.social.network.domain.ApplicationUserPasswordEntity;
@@ -25,7 +24,6 @@ public class ApplicationUserRepositoryImpl implements ApplicationUserRepository 
     }
 
     @Override
-    @Transactional
     public AccountEntity createNewAccount(String login, String name, String lastName,
                                           String email, String password) {
         Session session = factory.getCurrentSession();
@@ -34,12 +32,17 @@ public class ApplicationUserRepositoryImpl implements ApplicationUserRepository 
         ApplicationUserEntity user = new ApplicationUserEntity(name, lastName, email);
         ApplicationUserPasswordEntity userPassword = new ApplicationUserPasswordEntity(account, password);
 
-        account.setUserPasswordEntity(userPassword);
         account.setApplicationUser(user);
+        account.setUserPasswordEntity(userPassword);
 
         session.persist(account);
 
         return account;
     }
 
+    @Override
+    public AccountEntity findAccount(int id) {
+        Session session = factory.getCurrentSession();
+        return session.get(AccountEntity.class, id);
+    }
 }

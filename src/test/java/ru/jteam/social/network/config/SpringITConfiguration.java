@@ -17,8 +17,8 @@ import ru.jteam.social.network.repository.impl.ApplicationUserRepositoryImpl;
 public class SpringITConfiguration {
 
     @Bean
-    public ApplicationUserRepository userRepository(SessionFactory itSessionFactory) {
-        return new ApplicationUserRepositoryImpl(itSessionFactory);
+    public ApplicationUserRepository userRepository(SessionFactory testSessionFactory) {
+        return new ApplicationUserRepositoryImpl(testSessionFactory);
     }
 
 }

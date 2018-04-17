@@ -4,9 +4,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -20,14 +20,15 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class HibernateITConfiguration {
 
-    @Bean(name = "itDataSource")
+    @Bean(name = "testDataSource")
     public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2)
+        return new EmbeddedDatabaseBuilder()
+                .setType(EmbeddedDatabaseType.H2)
                 .setName("jteam-sn")
                 .build();
     }
 
-    @Bean(name = "itLocalSessionFactoryBean")
+    @Bean(name = "testLocalSessionFactoryBean")
     public LocalSessionFactoryBean sessionFactoryBean() {
         LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 
@@ -44,14 +45,14 @@ public class HibernateITConfiguration {
         return factory;
     }
 
-    @Bean(name = "itSessionFactory")
+    @Bean(name = "testSessionFactory")
     public SessionFactory sessionFactory() {
         return sessionFactoryBean().getObject();
     }
 
-    @Bean(name = "itTransactionManager")
-    public DataSourceTransactionManager transactionManager(DataSource dataSource) {
-        return new DataSourceTransactionManager(dataSource);
+    @Bean(name = "testTransactionManager")
+    public HibernateTransactionManager transactionManager(SessionFactory testSessionFactory) {
+        return new HibernateTransactionManager(testSessionFactory);
     }
 
 

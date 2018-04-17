@@ -21,7 +21,7 @@ public class AccountEntity implements Serializable {
     private String login;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @MapsId
+    @PrimaryKeyJoinColumn
     private ApplicationUserEntity applicationUser;
 
     @OneToOne(mappedBy = "account", cascade = CascadeType.PERSIST)

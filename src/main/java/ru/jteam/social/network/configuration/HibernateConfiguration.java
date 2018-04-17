@@ -37,7 +37,7 @@ public class HibernateConfiguration {
         LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 
         factory.setDataSource(dataSource);
-        factory.setPackagesToScan("ru.jteam.project.domain");
+        factory.setPackagesToScan("ru.jteam.social.network.domain");
         factory.setHibernateProperties(defineHibernateProperties());
 
         return factory;
