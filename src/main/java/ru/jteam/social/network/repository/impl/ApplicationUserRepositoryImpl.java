@@ -10,6 +10,8 @@ import ru.jteam.social.network.domain.ApplicationUserEntity;
 import ru.jteam.social.network.domain.ApplicationUserPasswordEntity;
 import ru.jteam.social.network.repository.ApplicationUserRepository;
 
+import java.util.List;
+
 /**
  * @author protsko on 08.04.18
  */
@@ -29,11 +31,13 @@ public class ApplicationUserRepositoryImpl implements ApplicationUserRepository 
         Session session = factory.getCurrentSession();
 
         AccountEntity account = new AccountEntity(login);
-        ApplicationUserEntity user = new ApplicationUserEntity(name, lastName, email);
         ApplicationUserPasswordEntity userPassword = new ApplicationUserPasswordEntity(account, password);
-
-        account.setApplicationUser(user);
         account.setUserPasswordEntity(userPassword);
+        session.persist(account);
+
+        ApplicationUserEntity user = new ApplicationUserEntity(name, lastName, email);
+        user.setAccountId(account.getAccountId());
+        account.setApplicationUser(user);
 
         session.persist(account);
 
@@ -41,8 +45,17 @@ public class ApplicationUserRepositoryImpl implements ApplicationUserRepository 
     }
 
     @Override
-    public AccountEntity findAccount(int id) {
+    public ApplicationUserEntity findByLogin(String login) {
         Session session = factory.getCurrentSession();
-        return session.get(AccountEntity.class, id);
+
+        // TODO: replace to named query (or native named query)
+        List<ApplicationUserEntity> users = session.createQuery(
+                        "select app_user from ApplicationUserEntity as app_user " +
+                        "join AccountEntity as acc on acc.accountId = app_user.accountId " +
+                        "where acc.login = :login", ApplicationUserEntity.class)
+                .setParameter("login", login)
+                .getResultList();
+
+        return users.size() == 0 ? null : users.get(0);
     }
 }

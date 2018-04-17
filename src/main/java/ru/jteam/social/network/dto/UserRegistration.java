@@ -13,7 +13,7 @@ import ru.jteam.social.network.validation.FieldsMatch;
         second = "passwordConfirmation",
         message = "Passwords are not equals"
 )
-public class RegistrationDto {
+public class UserRegistration {
 
     @NotBlank
     @Length(min = 6)
@@ -21,6 +21,9 @@ public class RegistrationDto {
 
     @NotBlank
     private String name;
+
+    @NotBlank
+    private String lastName;
 
     @Email
     private String email;
@@ -31,7 +34,7 @@ public class RegistrationDto {
     @NotBlank
     private String passwordConfirmation;
 
-    public RegistrationDto() {}
+    public UserRegistration() {}
 
     public String getLogin() {
         return login;
@@ -73,4 +76,11 @@ public class RegistrationDto {
         this.passwordConfirmation = passwordConfirmation;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }

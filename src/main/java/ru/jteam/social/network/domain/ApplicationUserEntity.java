@@ -1,9 +1,6 @@
 package ru.jteam.social.network.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -15,9 +12,6 @@ public class ApplicationUserEntity implements Serializable {
 
     @Id
     @Column(name = "account_id")
-//    @GeneratedValue(generator = "application_user_id_foreign_gen")
-//    @GenericGenerator(strategy = "foreign", name = "application_user_id_foreign_gen",
-//            parameters = @Parameter(name = "property", value = "accountentity"))
     private int accountId;
 
     @Column(name = "first_name", nullable = false, length = 40)
@@ -51,5 +45,21 @@ public class ApplicationUserEntity implements Serializable {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
