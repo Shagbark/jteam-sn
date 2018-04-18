@@ -13,8 +13,8 @@
 
             <div class="login_form_container">
 
-                <!--/*@thymesVar id="registrationDto" type="ru.jteam.social.network.dto.RegistrationDto"*/-->
-                <form class="login_form" method="post" th:object="${registrationDto}"
+                <!--/*@thymesVar id="userRegistration" type="ru.jteam.social.network.dto.UserRegistration"*/-->
+                <form class="login_form" method="post" th:object="${userRegistration}"
                         th:action="@{/registration}" name="registrationDto">
 
                     <div class="form_header">Sign Up JTeam SN</div>
@@ -29,6 +29,12 @@
                         <input class="form_input form-control" type="text" placeholder="Name" th:field="*{name}"
                                th:errorclass="input_error"/>
                         <p class="error-description" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                    </div>
+
+                    <div>
+                        <input class="form_input form-control" type="text" placeholder="Last name" th:field="*{lastName}"
+                               th:errorclass="input_error"/>
+                        <p class="error-description" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
                     </div>
 
                     <div>
