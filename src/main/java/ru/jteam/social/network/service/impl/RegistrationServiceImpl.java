@@ -7,6 +7,7 @@ import ru.jteam.social.network.dto.ApplicationUser;
 import ru.jteam.social.network.dto.UserRegistration;
 import ru.jteam.social.network.exception.AccountExistsException;
 import ru.jteam.social.network.repository.ApplicationUserRepository;
+import ru.jteam.social.network.repository.PasswordService;
 import ru.jteam.social.network.service.RegistrationService;
 
 import java.util.Objects;
@@ -18,10 +19,12 @@ import java.util.Objects;
 public class RegistrationServiceImpl implements RegistrationService {
 
     private final ApplicationUserRepository userRepository;
+    private final PasswordService passwordService;
 
     @Autowired
-    public RegistrationServiceImpl(ApplicationUserRepository userRepository) {
+    public RegistrationServiceImpl(ApplicationUserRepository userRepository, PasswordService passwordService) {
         this.userRepository = userRepository;
+        this.passwordService = passwordService;
     }
 
     @Override
@@ -33,8 +36,9 @@ public class RegistrationServiceImpl implements RegistrationService {
             throw new AccountExistsException(userRegistration.getLogin());
         }
 
+        String encodedPassword = passwordService.encryptPassword(userRegistration.getPassword());
         userRepository.createNewAccount(userRegistration.getLogin(), userRegistration.getName(),
-                userRegistration.getLastName(), userRegistration.getEmail(), userRegistration.getPassword());
+                userRegistration.getLastName(), userRegistration.getEmail(), encodedPassword);
     }
 
     @Override

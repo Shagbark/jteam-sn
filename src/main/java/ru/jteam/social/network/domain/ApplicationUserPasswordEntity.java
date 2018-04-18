@@ -11,17 +11,16 @@ import java.io.Serializable;
 public class ApplicationUserPasswordEntity implements Serializable {
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "account_id")
-    AccountEntity account;
+    @Column(name = "account_id")
+    private int accountId;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = false, length = 100)
     private String password;
 
     public ApplicationUserPasswordEntity() {}
 
-    public ApplicationUserPasswordEntity(AccountEntity account, String password) {
-        this.account = account;
+    public ApplicationUserPasswordEntity(int accountId, String password) {
+        this.accountId = accountId;
         this.password = password;
     }
 

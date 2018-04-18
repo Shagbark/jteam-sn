@@ -24,7 +24,8 @@ public class AccountEntity implements Serializable {
     @PrimaryKeyJoinColumn
     private ApplicationUserEntity applicationUser;
 
-    @OneToOne(mappedBy = "account", cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE } )
+    @PrimaryKeyJoinColumn
     private ApplicationUserPasswordEntity userPasswordEntity;
 
     public AccountEntity() {}

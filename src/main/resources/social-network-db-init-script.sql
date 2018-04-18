@@ -25,6 +25,6 @@ CREATE TABLE IF NOT EXISTS application_user_info (
 
 CREATE TABLE IF NOT EXISTS application_user_password (
   account_id INT PRIMARY KEY,
-  password VARCHAR(30) NOT NULL UNIQUE,
+  password VARCHAR(100) NOT NULL UNIQUE,
   FOREIGN KEY (account_id) REFERENCES accounts(account_id)
 );

@@ -5,20 +5,21 @@ import ru.jteam.social.network.dto.ApplicationUser
 import ru.jteam.social.network.dto.UserRegistration
 import ru.jteam.social.network.exception.AccountExistsException
 import ru.jteam.social.network.repository.ApplicationUserRepository
+import ru.jteam.social.network.repository.PasswordService
 import ru.jteam.social.network.service.impl.RegistrationServiceImpl
 import spock.lang.Specification
-
 /**
  * @author protsko on 17.04.18
  */
 class RegistrationServiceTest extends Specification {
 
     private final ApplicationUserRepository repository = Mock(ApplicationUserRepository.class)
+    private final PasswordService passwordService = Mock(PasswordService.class)
 
     private RegistrationService service
 
     def setup() {
-        service = new RegistrationServiceImpl(repository)
+        service = new RegistrationServiceImpl(repository, passwordService)
     }
 
     def "register() - throw exception if dto is null"() {
@@ -77,12 +78,34 @@ class RegistrationServiceTest extends Specification {
             result == null
     }
 
+    @SuppressWarnings("GroovyAssignabilityCheck")
     def "findByLogin() - return null if no entity in database"() {
-
+        given:
+            String login = "some login"
+        when:
+            ApplicationUser result = service.findByLogin(login)
+        then:
+            1 * repository.findByLogin({String passedLogin ->
+                assert passedLogin == login
+                return true
+            }) >> null
+        and:
+            result == null
     }
 
+    @SuppressWarnings("GroovyAssignabilityCheck")
     def "findByLogin() - validate string and get entity from database"() {
-
+        given:
+            String login = "some login"
+        when:
+            ApplicationUser result = service.findByLogin(login)
+        then:
+            1 * repository.findByLogin({String passedLogin ->
+                assert passedLogin == login
+                return true
+            }) >> new ApplicationUserEntity()
+        and:
+            result != null
     }
 
 }

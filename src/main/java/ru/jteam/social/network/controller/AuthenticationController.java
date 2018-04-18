@@ -36,7 +36,7 @@ public class AuthenticationController {
 
     @GetMapping(value = "/registration")
     public String registrationPage(Model model) {
-        model.addAttribute("registrationDto", new UserRegistration());
+        model.addAttribute("userRegistration", new UserRegistration());
         return "registration";
     }
 

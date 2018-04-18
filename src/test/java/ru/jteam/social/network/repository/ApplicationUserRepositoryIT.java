@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  */
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = SpringITConfiguration.class)
+@ContextConfiguration(classes =  SpringITConfiguration.class)
 public class ApplicationUserRepositoryIT {
 
     @Autowired

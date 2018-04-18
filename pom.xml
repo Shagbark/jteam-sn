@@ -13,6 +13,7 @@
         <groovy.version>2.4.12</groovy.version>
         <spock.version>1.1-groovy-2.4</spock.version>
         <spring.version>4.3.10.RELEASE</spring.version>
+        <spring.security.version>4.2.5.RELEASE</spring.security.version>
         <hibernate.version>5.2.10.Final</hibernate.version>
         <jupiter.version>5.1.0</jupiter.version>
         <mysql.version>6.0.6</mysql.version>
@@ -45,7 +46,6 @@
             <version>${spring.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
@@ -56,6 +56,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>${spring.security.version}</version>
         </dependency>
 
         <dependency>

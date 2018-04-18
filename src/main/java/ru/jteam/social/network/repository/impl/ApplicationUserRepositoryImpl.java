@@ -31,12 +31,14 @@ public class ApplicationUserRepositoryImpl implements ApplicationUserRepository 
         Session session = factory.getCurrentSession();
 
         AccountEntity account = new AccountEntity(login);
-        ApplicationUserPasswordEntity userPassword = new ApplicationUserPasswordEntity(account, password);
-        account.setUserPasswordEntity(userPassword);
         session.persist(account);
 
         ApplicationUserEntity user = new ApplicationUserEntity(name, lastName, email);
         user.setAccountId(account.getAccountId());
+
+        ApplicationUserPasswordEntity userPassword = new ApplicationUserPasswordEntity(
+                account.getAccountId(), password);
+        account.setUserPasswordEntity(userPassword);
         account.setApplicationUser(user);
 
         session.persist(account);
