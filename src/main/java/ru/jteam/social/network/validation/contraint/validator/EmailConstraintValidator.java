@@ -1,4 +1,6 @@
-package ru.jteam.social.network.validation;
+package ru.jteam.social.network.validation.contraint.validator;
+
+import ru.jteam.social.network.validation.annotation.Email;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

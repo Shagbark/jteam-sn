@@ -1,7 +1,8 @@
-package ru.jteam.social.network.validation;
+package ru.jteam.social.network.validation.contraint.validator;
 
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
+import ru.jteam.social.network.validation.annotation.FieldsMatch;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
