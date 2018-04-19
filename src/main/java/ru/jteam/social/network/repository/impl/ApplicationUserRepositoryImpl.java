@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author protsko on 08.04.18
  */
-@Repository
+@Repository(value = "applicationUserRepository")
 public class ApplicationUserRepositoryImpl implements ApplicationUserRepository {
 
     private final SessionFactory factory;
@@ -60,4 +60,21 @@ public class ApplicationUserRepositoryImpl implements ApplicationUserRepository 
 
         return users.size() == 0 ? null : users.get(0);
     }
+
+    @Override
+    // TODO test: add test after replace to named query
+    public boolean isEmailExists(String email) {
+        Session session = factory.getCurrentSession();
+
+        // TODO: replace to named query (or native named query)
+        List<ApplicationUserEntity> users = session.createQuery(
+                        "select app_user from ApplicationUserEntity as app_user " +
+                        "join AccountEntity as acc on acc.accountId = app_user.accountId " +
+                        "where app_user.email = :email", ApplicationUserEntity.class)
+                .setParameter("email", email)
+                .getResultList();
+
+        return !users.isEmpty();
+    }
+
 }

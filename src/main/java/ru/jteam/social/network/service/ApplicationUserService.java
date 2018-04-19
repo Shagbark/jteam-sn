@@ -9,4 +9,6 @@ public interface ApplicationUserService {
 
     ApplicationUser findByLogin(String login);
 
+    boolean isEmailExists(String email);
+
 }

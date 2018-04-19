@@ -20,7 +20,7 @@ public class UniqueLoginValidator implements UniqueValidator {
     @Override
     public boolean validate(Object value) {
         String login = (String) value;
-        return applicationUserService.findByLogin(login) != null;
+        return applicationUserService.findByLogin(login) == null;
     }
 
 }
