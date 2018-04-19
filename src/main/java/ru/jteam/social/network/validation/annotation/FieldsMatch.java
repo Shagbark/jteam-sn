@@ -1,4 +1,6 @@
-package ru.jteam.social.network.validation;
+package ru.jteam.social.network.validation.annotation;
+
+import ru.jteam.social.network.validation.contraint.validator.FieldsMatchConstraintValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

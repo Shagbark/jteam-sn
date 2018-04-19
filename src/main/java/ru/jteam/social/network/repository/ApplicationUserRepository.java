@@ -16,4 +16,7 @@ public interface ApplicationUserRepository {
     @Transactional(readOnly = true)
     ApplicationUserEntity findByLogin(String login);
 
+    @Transactional(readOnly = true)
+    boolean isEmailExists(String email);
+
 }

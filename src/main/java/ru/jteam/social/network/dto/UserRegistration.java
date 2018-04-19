@@ -2,8 +2,11 @@ package ru.jteam.social.network.dto;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import ru.jteam.social.network.validation.Email;
-import ru.jteam.social.network.validation.FieldsMatch;
+import ru.jteam.social.network.validation.UniqueEmailValidator;
+import ru.jteam.social.network.validation.annotation.Email;
+import ru.jteam.social.network.validation.annotation.FieldsMatch;
+import ru.jteam.social.network.validation.annotation.Unique;
+import ru.jteam.social.network.validation.UniqueLoginValidator;
 
 /**
  * @author protsko on 06.04.18
@@ -17,6 +20,8 @@ public class UserRegistration {
 
     @NotBlank
     @Length(min = 6)
+    @Unique(uniqueValidator = UniqueLoginValidator.class,
+            message = "Such login exists.")
     private String login;
 
     @NotBlank
@@ -26,6 +31,8 @@ public class UserRegistration {
     private String lastName;
 
     @Email
+    @Unique(uniqueValidator = UniqueEmailValidator.class,
+            message = "Such email exists")
     private String email;
 
     @NotBlank

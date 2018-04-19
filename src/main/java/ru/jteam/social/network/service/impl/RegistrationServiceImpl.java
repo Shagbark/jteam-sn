@@ -41,13 +41,6 @@ public class RegistrationServiceImpl implements RegistrationService {
                 userRegistration.getLastName(), userRegistration.getEmail(), encodedPassword);
     }
 
-    @Override
-    public ApplicationUser findByLogin(String login) {
-        ApplicationUserEntity entity = find(login);
-        return entity == null ? null : new ApplicationUser(login,
-                entity.getName() + " " + entity.getLastName(), entity.getEmail());
-    }
-
     private ApplicationUserEntity find(String login) {
         if (login == null || login.trim().isEmpty()) {
             return null;

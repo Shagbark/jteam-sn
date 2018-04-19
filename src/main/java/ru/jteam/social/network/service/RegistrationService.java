@@ -1,6 +1,5 @@
 package ru.jteam.social.network.service;
 
-import ru.jteam.social.network.dto.ApplicationUser;
 import ru.jteam.social.network.dto.UserRegistration;
 
 /**
@@ -9,7 +8,5 @@ import ru.jteam.social.network.dto.UserRegistration;
 public interface RegistrationService {
 
     void register(UserRegistration dto);
-
-    ApplicationUser findByLogin(String login);
 
 }
