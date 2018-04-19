@@ -20,7 +20,7 @@ public class UniqueEmailValidator implements UniqueValidator {
     @Override
     public boolean validate(Object value) {
         String email = (String) value;
-        return applicationUserService.isEmailExists(email);
+        return !applicationUserService.isEmailExists(email);
     }
 
 }

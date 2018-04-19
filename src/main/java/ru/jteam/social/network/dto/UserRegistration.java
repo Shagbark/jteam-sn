@@ -2,6 +2,7 @@ package ru.jteam.social.network.dto;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import ru.jteam.social.network.validation.UniqueEmailValidator;
 import ru.jteam.social.network.validation.annotation.Email;
 import ru.jteam.social.network.validation.annotation.FieldsMatch;
 import ru.jteam.social.network.validation.annotation.Unique;
@@ -30,6 +31,8 @@ public class UserRegistration {
     private String lastName;
 
     @Email
+    @Unique(uniqueValidator = UniqueEmailValidator.class,
+            message = "Such email exists")
     private String email;
 
     @NotBlank
