@@ -15,7 +15,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = EmailConstraintValidator.class)
 public @interface Email {
 
-    String message() default "Email should like example@example.com";
+    String message() default "{jteam.sn.validation.invalid.email.format}";
 
     Class<?>[] groups() default {};
 

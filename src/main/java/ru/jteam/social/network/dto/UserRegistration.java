@@ -14,14 +14,14 @@ import ru.jteam.social.network.validation.UniqueLoginValidator;
 @FieldsMatch(
         first = "password",
         second = "passwordConfirmation",
-        message = "Passwords are not equals"
+        message = "{jteam.sn.validation.passwords.not.equals}"
 )
 public class UserRegistration {
 
     @NotBlank
-    @Length(min = 6)
+    @Length(min = 6, max = 25)
     @Unique(uniqueValidator = UniqueLoginValidator.class,
-            message = "Such login exists.")
+            message = "{jteam.sn.validation.not.unique.login}")
     private String login;
 
     @NotBlank
@@ -32,7 +32,7 @@ public class UserRegistration {
 
     @Email
     @Unique(uniqueValidator = UniqueEmailValidator.class,
-            message = "Such email exists")
+            message = "{jteam.sn.validation.not.unique.email}")
     private String email;
 
     @NotBlank
