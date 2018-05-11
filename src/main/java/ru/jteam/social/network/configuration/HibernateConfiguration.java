@@ -32,7 +32,10 @@ public class HibernateConfiguration {
         this.env = env;
     }
 
-    @Bean
+    @Bean(name = {
+            "factory",
+            "sessionFactory"
+    })
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
         LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 

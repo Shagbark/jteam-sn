@@ -18,20 +18,15 @@ import javax.validation.Valid;
  * @author protsko on 22.03.18
  */
 @Controller
-public class AuthenticationController {
+public class RegistrationController {
 
-    private final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
+    private final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
     private final RegistrationService registrationService;
 
     @Autowired
-    public AuthenticationController(RegistrationService registrationService) {
+    public RegistrationController(RegistrationService registrationService) {
         this.registrationService = registrationService;
-    }
-
-    @GetMapping(value = "/login")
-    public String loginPage() {
-        return "login";
     }
 
     @GetMapping(value = "/registration")

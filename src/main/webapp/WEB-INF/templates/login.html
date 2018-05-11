@@ -14,15 +14,18 @@
 
             <div class="login_form_container">
 
-                <form class="login_form">
+                <!--/*@thymesVar id="authUser" type="ru.jteam.social.network.dto.AuthorizationUser"*/-->
+                <form class="login_form" method="post" th:action="@{/login}" th:object="${authUser}">
 
                     <div class="form_header">Sign in JTeam SN</div>
 
                     <div>
-                        <input class="form_input form-control" placeholder="Email"/>
+                        <input class="form_input form-control" name="loginOrEmail" placeholder="Login or email"
+                            th:field="*{loginOrEmail}"/>
                     </div>
                     <div>
-                        <input class="form_input form-control" type="password" placeholder="Password">
+                        <input class="form_input form-control" name="password" type="password" placeholder="Password"
+                            th:field="*{password}">
                     </div>
 
                     <div class="button_container">

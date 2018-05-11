@@ -1,5 +1,7 @@
 package ru.jteam.social.network.repository.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -8,8 +10,10 @@ import ru.jteam.social.network.repository.PasswordService;
 /**
  * @author protsko on 18.04.18
  */
-@Service
+@Service("passwordService")
 public class PasswordServiceImpl implements PasswordService {
+
+    private final Logger logger = LoggerFactory.getLogger(PasswordServiceImpl.class);
 
     private static final int PASSWORD_STRENGTH = 16;
 
