@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author protsko on 30.04.18
  */
-@Repository
+@Repository("accountRepository")
 public class AccountRepositoryImpl implements AccountRepository {
 
     private final SessionFactory factory;

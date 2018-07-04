@@ -35,7 +35,6 @@ public class AuthorizationController {
     @PostMapping(value = "/login")
     public String loginUser(@ModelAttribute("authUser") final AuthorizationUser authUser,
                             Model model) {
-        logger.info("login: " + authUser.getLoginOrEmail() + ", password: " + authUser.getPassword());
         boolean isAuthorize = authService.authorize(authUser.getLoginOrEmail(), authUser.getPassword());
         if (!isAuthorize) {
             model.addAttribute("denied", true);

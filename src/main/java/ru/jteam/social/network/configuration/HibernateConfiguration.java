@@ -70,6 +70,7 @@ public class HibernateConfiguration {
 //        properties.put(CURRENT_SESSION_CONTEXT_CLASS, env.getRequiredProperty("hbm.current.session.context.class"));
         properties.put(SHOW_SQL, env.getRequiredProperty("hbm.show.sql"));
         properties.put(HBM2DDL_AUTO, env.getRequiredProperty("hbm.ddl2.auto"));
+        properties.put(JDBC_TIME_ZONE, env.getRequiredProperty("hbm.time.zone"));
 
         properties.put(C3P0_MIN_SIZE, env.getRequiredProperty("hbm.c3p0.min.size"));
         properties.put(C3P0_MAX_SIZE, env.getRequiredProperty("hbm.c3p0.max.size"));
