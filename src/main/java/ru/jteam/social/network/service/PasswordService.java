@@ -1,4 +1,4 @@
-package ru.jteam.social.network.repository;
+package ru.jteam.social.network.service;
 
 /**
  * @author protsko on 18.04.18

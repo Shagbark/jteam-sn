@@ -37,6 +37,17 @@ class UserSessionRepositoryTest extends Specification {
             expectedResult.getExpiredDate() == result.getExpiredDate()
     }
 
+    def "updateSession() - updates entity"() {
+        given:
+            UserSessionEntity entity = new UserSessionEntity("some_login")
+        when:
+            UserSessionEntity result = repository.updateSession(entity)
+        then:
+            1 * session.merge(entity)
+        and:
+            entity == result
+    }
+
     def "findByLogin() - returns value from database"() {
         given:
             String login = "login"

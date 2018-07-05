@@ -28,7 +28,12 @@ public class UserSessionServiceImpl implements UserSessionService {
             throw new IllegalArgumentException("Login must be non null");
         }
 
-        UserSessionEntity entity = userSessionRepository.createSession(login);
+        UserSessionEntity entity = userSessionRepository.findByLogin(login);
+        if (entity != null) {
+            return extendSession(entity);
+        }
+
+        entity = userSessionRepository.createSession(login);
         return new UserSession(entity.getLogin(), entity.getSession().toString());
     }
 
@@ -56,6 +61,12 @@ public class UserSessionServiceImpl implements UserSessionService {
             return null;
         }
         return userSessionRepository.findByLogin(login);
+    }
+
+    private UserSession extendSession(UserSessionEntity entity) {
+        entity.setExpiredDate(LocalDate.now().plusDays(1));
+        entity = userSessionRepository.updateSession(entity);
+        return new UserSession(entity.getLogin(), entity.getSession().toString());
     }
 
 }

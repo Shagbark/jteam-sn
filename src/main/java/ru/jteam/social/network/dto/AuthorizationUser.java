@@ -5,15 +5,15 @@ package ru.jteam.social.network.dto;
  */
 public class AuthorizationUser {
 
-    private String loginOrEmail;
+    private String login;
     private String password;
 
-    public String getLoginOrEmail() {
-        return loginOrEmail;
+    public String getLogin() {
+        return login;
     }
 
-    public void setLoginOrEmail(String loginOrEmail) {
-        this.loginOrEmail = loginOrEmail;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {

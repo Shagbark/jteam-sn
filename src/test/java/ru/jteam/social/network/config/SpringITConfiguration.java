@@ -11,11 +11,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.jteam.social.network.configuration.CommonConfiguration;
 import ru.jteam.social.network.repository.AccountRepository;
 import ru.jteam.social.network.repository.ApplicationUserRepository;
-import ru.jteam.social.network.repository.PasswordService;
+import ru.jteam.social.network.service.PasswordService;
 import ru.jteam.social.network.repository.UserSessionRepository;
 import ru.jteam.social.network.repository.impl.AccountRepositoryImpl;
 import ru.jteam.social.network.repository.impl.ApplicationUserRepositoryImpl;
-import ru.jteam.social.network.repository.impl.PasswordServiceImpl;
+import ru.jteam.social.network.service.impl.PasswordServiceImpl;
 import ru.jteam.social.network.repository.impl.UserSessionRepositoryImpl;
 import ru.jteam.social.network.service.AuthorizationService;
 import ru.jteam.social.network.service.RegistrationService;
@@ -58,7 +58,7 @@ public class SpringITConfiguration {
     @Bean(name = "testAuthorizationService")
     public AuthorizationService authorizationService(@Qualifier("testPasswordService") PasswordService passwordService,
                                                      @Qualifier("testAccountRepository") AccountRepository accountRepository) {
-        return new AuthorizationServiceImpl(passwordService, accountRepository);
+        return new AuthorizationServiceImpl(passwordService, null, accountRepository);
     }
 
     @Bean(name = "testRegistrationService")

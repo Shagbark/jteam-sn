@@ -50,19 +50,4 @@ public class AccountRepositoryImpl implements AccountRepository {
         return entities.isEmpty() ? null : entities.get(0);
     }
 
-    @Override
-    public AccountEntity findByLoginOrEmail(String loginOrEmail) {
-        Session session = factory.getCurrentSession();
-
-        // TODO: replace to named (native) query
-        List<AccountEntity> entities = session.createQuery("select ae from AccountEntity ae " +
-                "join ApplicationUserEntity app_user on ae.accountId = app_user.accountId " +
-                "where ae.login = :login or app_user.email = :email", AccountEntity.class)
-                .setParameter("login", loginOrEmail)
-                .setParameter("email", loginOrEmail)
-                .getResultList();
-
-        return entities.isEmpty() ? null : entities.get(0);
-    }
-
 }

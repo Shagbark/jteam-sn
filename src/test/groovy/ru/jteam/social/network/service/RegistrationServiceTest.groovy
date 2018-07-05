@@ -4,7 +4,6 @@ import ru.jteam.social.network.domain.ApplicationUserEntity
 import ru.jteam.social.network.dto.UserRegistration
 import ru.jteam.social.network.exception.AccountExistsException
 import ru.jteam.social.network.repository.ApplicationUserRepository
-import ru.jteam.social.network.repository.PasswordService
 import ru.jteam.social.network.service.impl.RegistrationServiceImpl
 import spock.lang.Specification
 /**

@@ -7,7 +7,6 @@ import ru.jteam.social.network.dto.UserSession;
  */
 public interface UserSessionService {
 
-    // TODO: think about recreate session (session expired, user login again, but record exists)
     UserSession createSession(String login);
 
     UserSession findByLogin(String login);

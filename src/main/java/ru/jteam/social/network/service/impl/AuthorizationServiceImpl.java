@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.jteam.social.network.domain.AccountEntity;
 import ru.jteam.social.network.domain.ApplicationUserPasswordEntity;
 import ru.jteam.social.network.repository.AccountRepository;
-import ru.jteam.social.network.repository.PasswordService;
+import ru.jteam.social.network.service.PasswordService;
+import ru.jteam.social.network.service.ApplicationUserService;
 import ru.jteam.social.network.service.AuthorizationService;
 
 /**
@@ -18,14 +19,14 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     private final AccountRepository accountRepository;
 
     @Autowired
-    public AuthorizationServiceImpl(PasswordService passwordService, AccountRepository accountRepository) {
+    public AuthorizationServiceImpl(PasswordService passwordService, ApplicationUserService userService, AccountRepository accountRepository) {
         this.passwordService = passwordService;
         this.accountRepository = accountRepository;
     }
 
     @Override
     public boolean authorize(String loginOrEmail, String password) {
-        AccountEntity account = accountRepository.findByLoginOrEmail(loginOrEmail);
+        AccountEntity account = accountRepository.findByLogin(loginOrEmail);
         if (account == null) {
             return false;
         }

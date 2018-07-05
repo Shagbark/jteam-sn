@@ -28,6 +28,17 @@ public class UserSessionRepositoryImpl implements UserSessionRepository {
 
         UserSessionEntity entity = new UserSessionEntity(login);
         session.persist(entity);
+        session.flush();
+        session.evict(entity);
+
+        return entity;
+    }
+
+    @Override
+    public UserSessionEntity updateSession(UserSessionEntity entity) {
+        Session session = factory.getCurrentSession();
+
+        session.merge(entity);
 
         return entity;
     }
@@ -41,7 +52,13 @@ public class UserSessionRepositoryImpl implements UserSessionRepository {
                 .setParameter("login", login)
                 .getResultList();
 
-        return entities.size() == 0 ? null : entities.get(0);
+        if (entities.size() == 0) {
+            return null;
+        }
+
+        UserSessionEntity entity = entities.get(0);
+        session.evict(entity);
+        return entity;
     }
 
     @Override

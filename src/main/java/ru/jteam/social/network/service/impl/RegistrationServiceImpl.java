@@ -3,11 +3,10 @@ package ru.jteam.social.network.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.jteam.social.network.domain.ApplicationUserEntity;
-import ru.jteam.social.network.dto.ApplicationUser;
 import ru.jteam.social.network.dto.UserRegistration;
 import ru.jteam.social.network.exception.AccountExistsException;
 import ru.jteam.social.network.repository.ApplicationUserRepository;
-import ru.jteam.social.network.repository.PasswordService;
+import ru.jteam.social.network.service.PasswordService;
 import ru.jteam.social.network.service.RegistrationService;
 
 import java.util.Objects;

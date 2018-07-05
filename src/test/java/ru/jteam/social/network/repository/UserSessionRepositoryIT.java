@@ -41,6 +41,20 @@ public class UserSessionRepositoryIT {
     }
 
     @Test
+    public void testUpdateSession_validParams_mergeSession(){
+        String login = "new_login";
+        LocalDate date = LocalDate.now().plusDays(2);
+
+        UserSessionEntity entity = repository.createSession(login);
+
+        entity.setExpiredDate(date);
+        UserSessionEntity result = repository.updateSession(entity);
+
+        assertEquals(date, result.getExpiredDate());
+        assertEquals(login, entity.getLogin());
+    }
+
+    @Test
     public void testFindByLogin_recordExists_returnUserSession() {
         String login = "some_login";
         repository.createSession(login);

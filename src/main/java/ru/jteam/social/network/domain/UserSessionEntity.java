@@ -49,4 +49,8 @@ public class UserSessionEntity {
     public LocalDate getExpiredDate() {
         return expiredDate;
     }
+
+    public void setExpiredDate(LocalDate expiredDate) {
+        this.expiredDate = expiredDate;
+    }
 }

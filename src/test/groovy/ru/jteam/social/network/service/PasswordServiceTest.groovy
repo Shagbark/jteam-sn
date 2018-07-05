@@ -1,8 +1,7 @@
 package ru.jteam.social.network.service
 
 import org.springframework.security.crypto.password.PasswordEncoder
-import ru.jteam.social.network.repository.PasswordService
-import ru.jteam.social.network.repository.impl.PasswordServiceImpl
+import ru.jteam.social.network.service.impl.PasswordServiceImpl
 import spock.lang.Specification
 
 /**

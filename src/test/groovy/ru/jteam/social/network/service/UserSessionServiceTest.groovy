@@ -25,7 +25,7 @@ class UserSessionServiceTest extends Specification {
     // Tests for method create(String login)
     //
 
-    def "create() - invoke repository create method for valid login"() {
+    def "createSession() - invoke repository create method for valid login"() {
         given:
             String login = "login"
             UserSessionEntity entity = new UserSessionEntity(login: login, session: UUID.randomUUID())
@@ -37,14 +37,25 @@ class UserSessionServiceTest extends Specification {
             result.login == entity.login
     }
 
-    def "create() - throw IllegalArgumentException for empty login string"() {
+    def "createSession() - update session, if exists"() {
+        given:
+            String login = "login"
+            UserSessionEntity entity = new UserSessionEntity(login: login, session: UUID.randomUUID())
+        when:
+            service.createSession(login)
+        then:
+            1 * repository.findByLogin(login) >> entity
+            1 * repository.updateSession(entity) >> entity
+    }
+
+    def "createSession() - throw IllegalArgumentException for empty login string"() {
         when:
             service.createSession("")
         then:
             thrown IllegalArgumentException.class
     }
 
-    def "create() - throw IllegalArgumentException for null login"() {
+    def "createSession() - throw IllegalArgumentException for null login"() {
         when:
             service.createSession(null)
         then:
