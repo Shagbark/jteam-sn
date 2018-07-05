@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.jteam.social.network.config.SpringITConfiguration;
-import ru.jteam.social.network.repository.PasswordService;
 
 import static org.junit.Assert.assertNotEquals;
 

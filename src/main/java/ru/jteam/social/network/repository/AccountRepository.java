@@ -14,7 +14,4 @@ public interface AccountRepository {
     @Transactional(readOnly = true)
     AccountEntity findByEmail(String email);
 
-    @Transactional(readOnly = true)
-    AccountEntity findByLoginOrEmail(String loginOrEmail);
-
 }
